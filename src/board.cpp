@@ -3,15 +3,16 @@
 
 using namespace Constants;
 
-Board::Board() : cells_{{ false }}, currentScore_(0) {}
+Board::Board() : cells_{{ false }}, currentScore_(0) {
+    displayScore(0);
+}
 
 /**
  * Loop through each of the locations or "cells" on the board and fill
  * any cells populated by a piece with the appropriate color. Show
  * the score at the bottom of the window (rows filled).
  */
-void Board::draw(SDL_Renderer *renderer, TTF_Font *font) {
-    displayScore(renderer, font);
+void Board::draw(SDL_Renderer *renderer) {
     SDL_SetRenderDrawColor(
         renderer,
         /* Light Gray: */ 140, 140, 140, 255);
@@ -83,6 +84,7 @@ void Board::unite(const Piece &piece) {
                 }
             }
         }
+        displayScore(currentScore_);
     }
 }
 
@@ -121,21 +123,10 @@ void Board::updateOffsetRow(int fullRow) {
 }
 
 /**
- * Displays the current score at the bottom of the playing area.
+ * Updates the DOM with the current score.
  */
-void Board::displayScore(SDL_Renderer *renderer, TTF_Font *font) {
-    std::stringstream message;
-    message << "ROWS: " << currentScore_;
-    SDL_Color white = { 255, 255, 255 };
-    SDL_Surface *surface = TTF_RenderText_Blended(
-        font,
-        message.str().c_str(),
-        white);
-    SDL_Texture *texture = SDL_CreateTextureFromSurface(
-        renderer,
-        surface);
-    SDL_Rect messageRect{ 20, BoardHeight + 15, surface->w, surface->h };
-    SDL_FreeSurface(surface);
-    SDL_RenderCopy(renderer, texture, nullptr, &messageRect);
-    SDL_DestroyTexture(texture);
+void Board::displayScore(int newScore) {
+    std::stringstream action;
+    action << "document.getElementById('score').innerHTML =" << newScore;
+    emscripten_run_script(action.str().c_str());
 }

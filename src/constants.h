@@ -8,7 +8,6 @@ namespace Constants {
     const int BoardWidth = 360;
     const int Offset = BoardWidth / BoardColumns;
     const int PieceSize = 4;
-    const int ScreenHeight = BoardHeight + 50;
 }
 
 #endif // TETRIS_CONSTANTS_H

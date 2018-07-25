@@ -10,7 +10,8 @@
                 "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
                 "/usr/include",
                 "${env:EMSCRIPTEN}/system/include",
-                "${env:HOME}/.emscripten_cache/asmjs/ports-builds/sdl2/include"
+                "${env:EMSCRIPTEN}/system/include/emscripten",
+                "${env:HOME}/.emscripten_ports/sdl2/SDL2-version_13/include"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",

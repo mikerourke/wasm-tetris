@@ -4,46 +4,45 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Remove Existing Wasm",
+      "label": "Remove Existing Web Files",
       "type": "shell",
       "command": "rm",
+      "args": [
+        "-f", "index.js", "index.wasm"
+      ],
+      "windows": {
+        "options": {
+          "cwd": "${workspaceRoot}/public",
+          "shell": {
+            "executable": "cmd.exe"
+          }
+        },
+        "command": "del",
+        "args": ["/F", "index.js", "index.wasm"]
+      },
       "options": {
         "cwd": "${workspaceRoot}/public"
-      },
-      "args": [
-        "index.js",
-        "index.wasm"
-      ]
+      }
     },
     {
       "label": "Build WebAssembly",
       "type": "shell",
       "command": "emcc",
       "args": [
-        "--bind",
-        "src/board.cpp",
-        "src/piece.cpp",
-        "src/main.cpp",
+        "--bind", "src/board.cpp", "src/piece.cpp", "src/main.cpp",
         "-std=c++14",
-        "-s",
-        "WASM=1",
-        "-s",
-        "USE_SDL=2",
-        "-s",
-        "MODULARIZE=1",
+        "-s", "WASM=1",
+        "-s", "USE_SDL=2",
+        "-s", "MODULARIZE=1",
         "-O3",
-        "-o",
-        "public/index.js"
+        "-o", "public/index.js"
       ],
       "group": {
         "kind": "build",
         "isDefault": true
       },
-      "presentation": {
-        "panel": "new"
-      },
       "problemMatcher": [],
-      "dependsOn": ["Remove Existing Wasm"]
+      "dependsOn": ["Remove Existing Web Files"]
     },
     {
       "label": "Remove Build Folder",
