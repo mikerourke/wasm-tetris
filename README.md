@@ -1,33 +1,5 @@
-# wasm-tetris
+# Wasm Tetris
 
-Tetris clone built in C++ and compiled to WebAssembly using Emscripten or natively using CMake.
+I created a Tetris clone for my book, [Learn WebAssembly](https://www.packtpub.com/web-development/learn-webassembly).
 
-## Compiling to WebAssembly Output
-### Prerequisites
-- Emscripten (emsdk)
-- Make (optional if using VS Code's Tasks feature)
-
-### Compilation
-To compile to a JS and Wasm file, you can run `make build` from the root directory 
-or run the `Build WebAssembly` task in VS Code.
-
-## Compiling to Executable (Native) Output
-### Prerequisites
-#### macOS
-- SDL2
-- SDL2_ttf
-- CMake
-- Make
-
-*Note: All of these can be installed using Homebrew.*
-
-#### Linux (Ubuntu)
-- libsdl2-dev (`sudo apt-get install libsdl2-dev`)
-
-#### Windows
-- MinGW
-
-## TODO
-- [ ] Figure out compiler for Windows
-- [ ] Add native build support for Linux and Windows
-
+I moved the code to [the book repo](https://github.com/mikerourke/learn-webassembly/tree/master/chapter-08-tetris) so I don't have to maintain 2 different versions.
